@@ -1,0 +1,42 @@
+{
+  "name": "deepletter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deepletter — набор веб-инструментов для работы с текстом и документами",
+  "author": "AlexKazDrumm <alexkazdrumm@gmail.com>",
+  "engines": {
+    "node": ">=22 <25"
+  },
+  "workspaces": [
+    "shared",
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "build:shared": "npm run build --workspace shared",
+    "build": "npm run build:shared && npm run build --workspace server && npm run build --workspace web",
+    "typecheck": "npm run build:shared && npm run typecheck --workspaces --if-present",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run build:shared && npm run test --workspace shared && npm run test --workspace server && npm run test --workspace web",
+    "test:e2e": "npm run test:e2e --workspace web",
+    "migrate": "npm run migrate --workspace server",
+    "seed": "npm run build:shared && npm run seed --workspace server",
+    "dev": "npm run dev --workspace server & npm run dev --workspace web"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.0",
+    "globals": "^17.0.0",
+    "prettier": "^3.4.0",
+    "typescript": "~5.9.0",
+    "typescript-eslint": "^8.46.0"
+  }
+}

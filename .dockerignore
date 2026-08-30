@@ -1,0 +1,14 @@
+**/node_modules
+**/dist
+web/.next
+**/coverage
+.git
+.github
+docs
+**/*.test.ts
+web/tests
+web/playwright-report
+web/test-results
+.env
+.env.*
+!.env.example

@@ -1,0 +1,25 @@
+{
+  "name": "@deepletter/shared",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Общие контракты и доменная логика обработки текста",
+  "author": "AlexKazDrumm <alexkazdrumm@gmail.com>",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "markdown-it": "^15.0.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.0"
+  }
+}

@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-deepletter}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-deepletter}
+      POSTGRES_DB: ${POSTGRES_DB:-deepletter}
+    ports:
+      - '${DB_PORT:-5432}:5432'
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-deepletter} -d ${POSTGRES_DB:-deepletter}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 3030
+      DATABASE_URL: postgres://${POSTGRES_USER:-deepletter}:${POSTGRES_PASSWORD:-deepletter}@db:5432/${POSTGRES_DB:-deepletter}
+      WEB_ORIGIN: ${WEB_ORIGIN:-http://localhost:3000}
+      MAX_UPLOAD_BYTES: ${MAX_UPLOAD_BYTES:-5242880}
+    ports:
+      - '3030:3030'
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:3030}
+    restart: unless-stopped
+    depends_on:
+      - server
+    environment:
+      NODE_ENV: production
+      API_BASE_URL: http://server:3030
+    ports:
+      - '3000:3000'
+
+volumes:
+  db-data:

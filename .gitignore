@@ -1,0 +1,33 @@
+# Зависимости
+node_modules/
+.npm/
+
+# Сборка
+dist/
+build/
+web/.next/
+web/out/
+web/next-env.d.ts
+*.tsbuildinfo
+
+# Тесты и покрытие
+coverage/
+web/test-results/
+web/playwright-report/
+web/blob-report/
+web/.playwright/
+
+# Переменные окружения
+.env
+.env.*
+!.env.example
+
+# Локальные файлы
+*.log
+npm-debug.log*
+
+# Редакторы и система
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
