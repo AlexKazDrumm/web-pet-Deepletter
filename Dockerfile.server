@@ -15,17 +15,19 @@ FROM base AS build
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build:shared && npm run build --workspace server
+RUN npm prune --omit=dev
 
 FROM base AS runtime
 ENV NODE_ENV=production
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/package.json ./package.json
-COPY --from=build /app/shared/package.json ./shared/package.json
-COPY --from=build /app/shared/dist ./shared/dist
-COPY --from=build /app/server/package.json ./server/package.json
-COPY --from=build /app/server/dist ./server/dist
-COPY --from=build /app/server/migrations ./server/migrations
-COPY --from=build /app/server/scripts ./server/scripts
+COPY --chown=node:node --from=build /app/node_modules ./node_modules
+COPY --chown=node:node --from=build /app/package.json ./package.json
+COPY --chown=node:node --from=build /app/shared/package.json ./shared/package.json
+COPY --chown=node:node --from=build /app/shared/dist ./shared/dist
+COPY --chown=node:node --from=build /app/server/package.json ./server/package.json
+COPY --chown=node:node --from=build /app/server/dist ./server/dist
+COPY --chown=node:node --from=build /app/server/migrations ./server/migrations
+COPY --chown=node:node --from=build /app/server/scripts ./server/scripts
 WORKDIR /app/server
+USER node
 EXPOSE 3030
 CMD ["sh", "-c", "node scripts/migrate.cjs up && node scripts/seed.cjs && node dist/server.js"]

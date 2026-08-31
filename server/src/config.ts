@@ -2,8 +2,8 @@ import path from 'node:path';
 import { config as loadEnv } from 'dotenv';
 import { z } from 'zod';
 
-loadEnv({ path: path.resolve(process.cwd(), '../.env') });
-loadEnv({ path: path.resolve(process.cwd(), '.env') });
+loadEnv({ path: path.resolve(process.cwd(), '../.env'), quiet: true });
+loadEnv({ path: path.resolve(process.cwd(), '.env'), quiet: true });
 
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),

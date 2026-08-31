@@ -13,7 +13,9 @@ test('домашняя страница показывает каталог ин
   ).toBeVisible();
   await expect(page.getByRole('heading', { level: 3, name: 'Анализ документа' })).toBeVisible();
   await expect(page.getByRole('heading', { level: 3, name: 'Markdown → HTML' })).toBeVisible();
-  await expect(page.getByRole('heading', { level: 3, name: 'Генератор случайных данных' })).toBeVisible();
+  await expect(
+    page.getByRole('heading', { level: 3, name: 'Генератор случайных данных' }),
+  ).toBeVisible();
 });
 
 test('анализ .docx: загрузка → индикатор → результат со статистикой', async ({ page }) => {

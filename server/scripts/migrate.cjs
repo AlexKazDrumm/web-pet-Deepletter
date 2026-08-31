@@ -2,8 +2,8 @@
 
 const path = require('node:path');
 
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env'), quiet: true });
+require('dotenv').config({ path: path.resolve(__dirname, '../.env'), quiet: true });
 
 async function run() {
   const direction = process.argv[2] === 'down' ? 'down' : 'up';
