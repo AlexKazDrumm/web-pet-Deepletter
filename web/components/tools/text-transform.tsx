@@ -56,7 +56,7 @@ export function TextTransformTool() {
         aria-label="Текст для преобразования"
       />
 
-      <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-slate-500">
+      <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-[#8e8e8e]">
         <span data-testid="counts">
           {counts.characters} символов · {counts.words} слов · {counts.lines} строк
         </span>

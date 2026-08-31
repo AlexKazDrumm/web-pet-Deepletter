@@ -75,7 +75,7 @@ export function DocumentAnalyzerTool() {
           }}
         >
           <div className="flex flex-col items-start gap-3">
-            <p className="text-sm text-slate-600 dark:text-slate-300">
+            <p className="text-sm text-[#6f6a6a]">
               Перетащите файл сюда или выберите вручную. Поддерживаются форматы{' '}
               {UPLOAD_FORMATS.map((f) => `.${f}`).join(', ')}, до {MAX_HINT}.
             </p>
@@ -93,10 +93,7 @@ export function DocumentAnalyzerTool() {
                 Выбрать файл
               </button>
               {file && (
-                <span
-                  className="text-sm text-slate-600 dark:text-slate-300"
-                  data-testid="file-name"
-                >
+                <span className="text-sm text-[#6f6a6a]" data-testid="file-name">
                   {file.name} · {formatBytes(file.size)}
                 </span>
               )}
@@ -133,7 +130,7 @@ export function DocumentAnalyzerTool() {
             </Callout>
           )}
           {status === 'idle' && !file && (
-            <p className="text-sm text-slate-500">Результат появится здесь после загрузки файла.</p>
+            <p className="text-sm text-[#8e8e8e]">Результат появится здесь после загрузки файла.</p>
           )}
         </div>
 
@@ -141,25 +138,25 @@ export function DocumentAnalyzerTool() {
       </div>
 
       <aside className="space-y-3">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+        <h2 className="text-sm font-semibold tracking-wide text-[#8e8e8e] uppercase">
           Недавние анализы
         </h2>
         {recent.length === 0 ? (
-          <p className="text-sm text-slate-400">Пока пусто.</p>
+          <p className="text-sm text-[#8e8e8e]">Пока пусто.</p>
         ) : (
           <ul className="space-y-2" data-testid="recent">
             {recent.map((item) => (
               <li
                 key={item.id}
-                className="rounded-lg border border-slate-200 bg-white p-3 text-sm dark:border-slate-800 dark:bg-slate-900"
+                className="rounded-[12px] border border-[#e5e7f2] bg-white p-3 text-sm"
               >
                 <div className="flex items-center justify-between">
-                  <span className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-xs uppercase dark:bg-slate-800">
+                  <span className="rounded bg-brand-50 px-1.5 py-0.5 font-mono text-xs uppercase">
                     {item.sourceFormat}
                   </span>
-                  <span className="text-xs text-slate-400">{formatDateTime(item.createdAt)}</span>
+                  <span className="text-xs text-[#8e8e8e]">{formatDateTime(item.createdAt)}</span>
                 </div>
-                <div className="mt-1 text-slate-600 dark:text-slate-300">
+                <div className="mt-1 text-[#6f6a6a]">
                   {formatNumber(item.wordCount)} слов · {formatBytes(item.sizeBytes)} ·{' '}
                   {formatDuration(item.readingTimeSeconds)} чтения
                 </div>
@@ -198,9 +195,8 @@ function AnalysisResult({ analysis }: { analysis: DocumentAnalysis }) {
       </div>
 
       {s.longestWord && (
-        <p className="text-sm text-slate-500">
-          Самое длинное слово:{' '}
-          <span className="font-medium text-slate-700 dark:text-slate-200">{s.longestWord}</span>
+        <p className="text-sm text-[#8e8e8e]">
+          Самое длинное слово: <span className="font-medium text-[#413434]">{s.longestWord}</span>
         </p>
       )}
 
@@ -211,13 +207,13 @@ function AnalysisResult({ analysis }: { analysis: DocumentAnalysis }) {
             {s.topWords.map((w) => (
               <li key={w.word} className="flex items-center gap-3 text-sm">
                 <span className="w-28 shrink-0 truncate">{w.word}</span>
-                <span className="h-2 flex-1 rounded-full bg-slate-100 dark:bg-slate-800">
+                <span className="h-2 flex-1 rounded-full bg-brand-50">
                   <span
                     className="block h-2 rounded-full bg-brand-500"
                     style={{ width: `${Math.round((w.count / maxCount) * 100)}%` }}
                   />
                 </span>
-                <span className="w-8 shrink-0 text-right tabular-nums text-slate-500">
+                <span className="w-8 shrink-0 text-right text-[#8e8e8e] tabular-nums">
                   {w.count}
                 </span>
               </li>

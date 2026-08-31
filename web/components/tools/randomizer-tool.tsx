@@ -142,9 +142,7 @@ export function RandomizerTool() {
               />
             </Field>
             <fieldset className="space-y-1 text-sm">
-              <legend className="font-medium text-slate-700 dark:text-slate-200">
-                Наборы символов
-              </legend>
+              <legend className="font-medium text-[#413434]">Наборы символов</legend>
               {(
                 [
                   ['upper', 'A–Z'],
@@ -195,7 +193,7 @@ export function RandomizerTool() {
           </Callout>
         )}
         <div className="card min-h-[8rem]">
-          <div className="text-xs uppercase tracking-wide text-slate-500">Результат</div>
+          <div className="text-xs tracking-wide text-[#8e8e8e] uppercase">Результат</div>
           <div
             className="mt-2 break-words font-mono text-lg"
             data-testid="random-result"

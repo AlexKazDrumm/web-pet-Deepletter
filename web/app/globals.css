@@ -1,83 +1,157 @@
 @import 'tailwindcss';
 
-@theme {
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter/Inter-Regular.otf') format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
 
-  --color-brand-50: #eef2ff;
-  --color-brand-100: #e0e7ff;
-  --color-brand-300: #a5b4fc;
-  --color-brand-500: #6366f1;
-  --color-brand-600: #4f46e5;
-  --color-brand-700: #4338ca;
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter/Inter-SemiBold.otf') format('opentype');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter/Inter-Bold.otf') format('opentype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src: url('/fonts/Merriweather/Merriweather-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src: url('/fonts/Merriweather/Merriweather-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: 'Inter', Arial, sans-serif;
+  --font-display: 'Merriweather', Georgia, serif;
+
+  --color-brand-50: #f2f4ff;
+  --color-brand-100: #e1e6ff;
+  --color-brand-300: #a9b8ff;
+  --color-brand-500: #6883ff;
+  --color-brand-600: #5271ff;
+  --color-brand-700: #3f5de0;
 }
 
 @layer base {
   html {
+    scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    margin: 0;
+    background: #fff;
+    color: #413434;
   }
 
-  @media (prefers-color-scheme: dark) {
-    body {
-      @apply bg-slate-950 text-slate-100;
-    }
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background: #e1e6ff;
+    color: #0a0a34;
+  }
+
+  :focus-visible {
+    outline: 3px solid rgb(82 113 255 / 35%);
+    outline-offset: 3px;
   }
 }
 
 @layer components {
   .card {
-    @apply rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900;
+    @apply rounded-[15px] border border-[#e5e7f2] bg-white p-6;
   }
 
   .input {
-    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 outline-none
-      focus:border-brand-500 focus:ring-2 focus:ring-brand-100
-      dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100;
+    @apply w-full rounded-[12px] border border-[#d8d9e6] bg-white px-3 py-2 text-sm text-[#413434]
+      outline-none transition-shadow focus:border-brand-600 focus:ring-3 focus:ring-brand-100;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm
-      font-medium text-white transition-colors hover:bg-brand-700
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-[15px] border-0 bg-brand-600
+      px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-700
       disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300
-      bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-100
-      disabled:cursor-not-allowed disabled:opacity-50
-      dark:border-slate-700 dark:hover:bg-slate-800;
+    @apply inline-flex min-h-10 items-center justify-center gap-2 rounded-[12px] border border-[#d8d9e6]
+      bg-white px-4 py-2 text-sm font-semibold text-[#413434] transition-colors hover:border-brand-300
+      hover:bg-brand-50 disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .prose-preview :where(h1, h2, h3) {
-    @apply mt-4 mb-2 font-semibold;
+    @apply mt-4 mb-2 font-display font-bold text-[#0a0a34];
   }
+
   .prose-preview h1 {
     @apply text-2xl;
   }
+
   .prose-preview h2 {
     @apply text-xl;
   }
+
   .prose-preview p {
     @apply my-2 leading-relaxed;
   }
+
   .prose-preview ul {
     @apply my-2 list-disc pl-6;
   }
+
   .prose-preview ol {
     @apply my-2 list-decimal pl-6;
   }
+
   .prose-preview blockquote {
-    @apply border-l-4 border-slate-300 pl-4 text-slate-600 italic dark:border-slate-700 dark:text-slate-400;
+    @apply border-l-4 border-brand-300 pl-4 text-[#6f6a6a] italic;
   }
+
   .prose-preview a {
     @apply text-brand-600 underline;
   }
+
   .prose-preview code {
-    @apply rounded bg-slate-100 px-1 py-0.5 font-mono text-sm dark:bg-slate-800;
+    @apply rounded bg-brand-50 px-1 py-0.5 font-mono text-sm;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

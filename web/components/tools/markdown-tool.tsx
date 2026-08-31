@@ -62,14 +62,14 @@ export function MarkdownTool() {
           <div className="flex gap-1">
             <button
               type="button"
-              className={`btn-ghost text-xs ${view === 'preview' ? 'bg-slate-100 dark:bg-slate-800' : ''}`}
+              className={`btn-ghost text-xs ${view === 'preview' ? 'border-brand-300 bg-brand-50 text-brand-700' : ''}`}
               onClick={() => setView('preview')}
             >
               Предпросмотр
             </button>
             <button
               type="button"
-              className={`btn-ghost text-xs ${view === 'html' ? 'bg-slate-100 dark:bg-slate-800' : ''}`}
+              className={`btn-ghost text-xs ${view === 'html' ? 'border-brand-300 bg-brand-50 text-brand-700' : ''}`}
               onClick={() => setView('html')}
             >
               HTML

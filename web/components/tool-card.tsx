@@ -3,16 +3,21 @@ import type { Tool } from '@deepletter/shared';
 
 export function ToolCard({ tool }: { tool: Tool }) {
   return (
-    <Link
-      href={tool.href}
-      className="card group flex flex-col gap-3 transition-shadow hover:shadow-md"
-    >
-      <span className="w-fit rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-medium text-brand-700 dark:bg-brand-700/20 dark:text-brand-300">
+    <article className="group flex min-h-[220px] flex-col border-t-2 border-brand-100 pt-7 transition-colors hover:border-brand-600">
+      <p className="mb-5 text-xs font-bold tracking-[0.14em] text-brand-600 uppercase">
         {tool.category}
-      </span>
-      <h3 className="text-lg font-semibold">{tool.title}</h3>
-      <p className="flex-1 text-sm text-slate-600 dark:text-slate-300">{tool.summary}</p>
-      <span className="text-sm font-medium text-brand-600 group-hover:underline">Открыть →</span>
-    </Link>
+      </p>
+      <h3 className="max-w-[16rem] text-base leading-[1.4] font-semibold tracking-[0.04em] text-[#413434]">
+        {tool.title}
+      </h3>
+      <p className="mt-5 flex-1 text-xs leading-[1.55] text-[#6f6a6a]">{tool.summary}</p>
+      <Link
+        href={tool.href}
+        className="mt-6 w-fit text-sm font-semibold text-brand-600 underline decoration-1 underline-offset-4 group-hover:text-brand-700"
+      >
+        Попробовать бесплатно
+        <span aria-hidden="true"> →</span>
+      </Link>
+    </article>
   );
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const NAV = [
   { href: '/tools/document-analyzer', label: 'Анализ документа' },
@@ -9,20 +10,26 @@ const NAV = [
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 font-semibold">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-brand-600 text-white">
-            D
-          </span>
-          <span>Deepletter</span>
+    <header className="bg-white">
+      <div className="mx-auto flex min-h-24 max-w-[1400px] flex-wrap items-center justify-between gap-x-10 gap-y-4 px-5 py-5 sm:px-8 lg:min-h-[147px] lg:px-12">
+        <Link href="/" aria-label="Deepletter — на главную" className="shrink-0">
+          <Image
+            src="/brand/deepletter-logo.png"
+            width="267"
+            height="60"
+            alt="Deepletter"
+            className="h-auto w-[214px] sm:w-[267px]"
+          />
         </Link>
-        <nav className="hidden gap-1 sm:flex">
+        <nav
+          aria-label="Основная навигация"
+          className="order-3 flex w-full flex-wrap gap-1 sm:order-2 sm:w-auto"
+        >
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
+              className="shrink-0 rounded-lg px-3 py-2 text-sm font-semibold text-[#8e8e8e] transition-colors hover:bg-brand-50 hover:text-brand-700 lg:px-4 lg:text-base"
             >
               {item.label}
             </Link>
